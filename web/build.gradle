@@ -1,0 +1,11 @@
+plugins {
+    id 'com.mys.java-library-conventions'
+}
+
+dependencies {
+    implementation project(':common')
+    implementation project(':usecase')
+}
+
+jar.enabled = true
+bootJar.enabled = false
