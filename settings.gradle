@@ -1,1 +1,8 @@
 rootProject.name = 'ProjectBlogSearch'
+include 'bootstrap'
+include 'common'
+include 'web'
+include 'usecase'
+include 'domain'
+include 'port'
+include 'infra'

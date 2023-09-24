@@ -1,0 +1,9 @@
+plugins {
+    id 'com.mys.java-library-conventions'
+}
+
+dependencies {
+}
+
+jar.enabled = true
+bootJar.enabled = false

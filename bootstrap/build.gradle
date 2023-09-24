@@ -1,0 +1,13 @@
+plugins {
+    id 'com.mys.java-application-conventions'
+}
+
+group = 'com.mys'
+version = '0.0.1-SNAPSHOT'
+
+dependencies {
+    runtimeOnly project(':common')
+    runtimeOnly project(':web')
+    runtimeOnly project(':domain')
+    runtimeOnly project(':infra')
+}

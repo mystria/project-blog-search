@@ -1,0 +1,14 @@
+plugins {
+    id 'com.mys.java-library-conventions'
+}
+
+dependencies {
+    implementation project(':common')
+    implementation project(':usecase')
+    implementation project(':port')
+
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
+}
+
+jar.enabled = true
+bootJar.enabled = false

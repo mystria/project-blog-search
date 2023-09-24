@@ -1,0 +1,14 @@
+plugins {
+    id 'com.mys.java-library-conventions'
+}
+
+dependencies {
+    implementation project(':common')
+    implementation project(':port')
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'com.h2database:h2'
+}
+
+jar.enabled = true
+bootJar.enabled = false

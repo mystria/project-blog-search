@@ -1,0 +1,4 @@
+plugins {
+    id 'com.mys.java-common-conventions'
+    id 'application'
+}
