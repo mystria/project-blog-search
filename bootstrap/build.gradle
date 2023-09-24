@@ -11,3 +11,9 @@ dependencies {
     runtimeOnly project(':domain')
     runtimeOnly project(':infra')
 }
+
+application {
+    mainClass = 'com.mys.projectblogsearch.Main'
+}
+
+bootRun.enabled = false

@@ -8,7 +8,7 @@ springdoc:
     tags-sorter: alpha
     path: /swagger-ui.html
     disable-swagger-default-url: true
-  paths-to-match:
-    - /v1/**
-  paths-to-exclude:
-    - /test/**
+#  paths-to-match:
+#    - /v1/**
+#  paths-to-exclude:
+#    - /test/**
