@@ -1,4 +1,4 @@
-package com.mys.projectblogsearch.response;
+package com.mys.projectblogsearch.request;
 
 import java.util.List;
 import lombok.Builder;
@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class PortKeywordListResponse {
+public class PortKeywordListRequest {
 
     private List<KeywordCount> keywordCountList;
 
