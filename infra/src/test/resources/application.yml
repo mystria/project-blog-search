@@ -8,3 +8,8 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
+
+client:
+  kakao:
+    url: 'https://dapi.kakao.com'
+    api-key: HAVE_TO_SET_BY_ENVIRONMENT_VARIABLE
