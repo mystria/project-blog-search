@@ -1,6 +1,6 @@
 package com.mys.projectblogsearch.response;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,6 +14,8 @@ public class PortBlogListResponse {
     private Integer offset;
 
     private Integer limit;
+
+    private Integer totalCount;
 
     @Getter
     @Builder
@@ -29,7 +31,7 @@ public class PortBlogListResponse {
 
         private String thumbnail;
 
-        private LocalDateTime dateTime;
+        private ZonedDateTime dateTime;
     }
 
 }
