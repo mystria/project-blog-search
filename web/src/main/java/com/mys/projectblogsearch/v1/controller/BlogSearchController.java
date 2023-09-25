@@ -1,39 +1,51 @@
 package com.mys.projectblogsearch.v1.controller;
 
 import com.mys.projectblogsearch.BlogSearchUseCase;
+import com.mys.projectblogsearch.type.SortType;
 import com.mys.projectblogsearch.v1.response.BlogListResponse;
-import com.mys.projectblogsearch.v1.response.StandardSuccessResponse;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.media.SchemaProperty;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
 public class BlogSearchController extends StandardController {
 
+    private static final BlogSearchMapper MAPPER = BlogSearchMapper.INSTANCE;
+
     private final BlogSearchUseCase blogSearchUseCase;
 
     @Tag(name = "Blog")
     @Operation(summary = "get blog list.", responses = {
         @ApiResponse(responseCode = "200", description = "OK",
-            content = @Content(contentSchema = @Schema(implementation = StandardSuccessResponse.class),
-                schemaProperties = {
-                    @SchemaProperty(name = "result", schema = @Schema(name = "result", implementation = BlogListResponse.class))
-                }
-            )
-        )
+            content = @Content(schema = @Schema(implementation = BlogListResponse.class)))
+    }, parameters = {
+        @Parameter(name = "query", description = "검색 키워드", required = true),
+        @Parameter(name = "sort", description = "정렬 옵션", example = "ACCURACY"),
+        @Parameter(name = "page", description = "페이지 번호", example = "1"),
+        @Parameter(name = "size", description = "페이지 사이즈", example = "10")
     })
     @GetMapping("/blogs")
-    public ResponseEntity<StandardSuccessResponse<BlogListResponse>> getBlogs() {
+    public ResponseEntity<BlogListResponse> getBlogs(
+        @RequestParam(value = "query") String query,
+        @RequestParam(value = "sort", required = false) SortType sort,
+        @RequestParam(value = "page", required = false) Integer page,
+        @RequestParam(value = "size", required = false) Integer size
+    ) {
 
-        return null;
+        return success(
+            MAPPER.toBlogListResponse(
+                blogSearchUseCase.search(
+                    MAPPER.toUseCaseBlogListRequest(query, sort, page, size))));
+
     }
 
 }

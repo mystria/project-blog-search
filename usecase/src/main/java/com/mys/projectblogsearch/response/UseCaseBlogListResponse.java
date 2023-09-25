@@ -1,6 +1,6 @@
 package com.mys.projectblogsearch.response;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,11 +9,13 @@ import lombok.Getter;
 @Builder
 public class UseCaseBlogListResponse {
 
-    private List<BlogSummary> blogList;
+    private List<BlogSummary> blogs;
 
     private Integer offset;
 
     private Integer limit;
+
+    private Integer totalCount;
 
     @Getter
     @Builder
@@ -29,7 +31,7 @@ public class UseCaseBlogListResponse {
 
         private String thumbnail;
 
-        private LocalDateTime dateTime;
+        private ZonedDateTime dateTime;
     }
 
 }

@@ -9,7 +9,7 @@ import lombok.Getter;
 @Builder
 public class PortBlogListResponse {
 
-    private List<BlogSummary> blogList;
+    private List<BlogSummary> blogs;
 
     private Integer offset;
 

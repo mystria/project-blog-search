@@ -13,14 +13,18 @@ import org.mapstruct.factory.Mappers;
 @Mapper
 public interface DaumBlogMapper {
 
+    int DAUM_DEFAULT_OFFSET = 1;
+
+    int DAUM_DEFAULT_LIMIT = 10;
+
     DaumBlogMapper INSTANCE = Mappers.getMapper(DaumBlogMapper.class);
 
     BlogSearchRequest toBlogSearchRequest(PortBlogListRequest request);
 
-    @Mapping(target = "offset", source = "request.page")
-    @Mapping(target = "limit", source = "request.size")
+    @Mapping(target = "offset", source = "request.page", defaultExpression = "java(DAUM_DEFAULT_OFFSET)")
+    @Mapping(target = "limit", source = "request.size", defaultExpression = "java(DAUM_DEFAULT_LIMIT)")
     @Mapping(target = "totalCount", source = "response.meta.totalCount")
-    @Mapping(target = "blogList", source = "response.documents")
+    @Mapping(target = "blogs", source = "response.documents")
     PortBlogListResponse toPortBlogListResponse(BlogSearchRequest request, BlogSearchResponse response);
 
     BlogSummary toBlogSummary(Document document);

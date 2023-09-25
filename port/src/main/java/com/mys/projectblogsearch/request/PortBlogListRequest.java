@@ -2,6 +2,7 @@ package com.mys.projectblogsearch.request;
 
 import com.mys.projectblogsearch.type.SortType;
 import com.mys.projectblogsearch.type.VendorType;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -21,9 +22,11 @@ public class PortBlogListRequest {
     private SortType sort;
 
     @Min(1)
+    @Max(50)
     private Integer page;
 
     @Min(1)
+    @Max(50)
     private Integer size;
 
 }
