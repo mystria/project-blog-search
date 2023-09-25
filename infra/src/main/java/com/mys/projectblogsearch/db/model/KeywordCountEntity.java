@@ -13,11 +13,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Builder(toBuilder = true)
 @Getter
+@Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Table(name = "keyword_count", indexes = {
     @Index(columnList = "keyword", name = "idx_keyword_count_keyword")
 })

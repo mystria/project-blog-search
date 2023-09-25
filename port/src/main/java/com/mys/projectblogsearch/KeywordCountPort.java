@@ -1,15 +1,15 @@
 package com.mys.projectblogsearch;
 
+import com.mys.projectblogsearch.request.PortKeywordListRequest;
 import com.mys.projectblogsearch.response.PortKeywordListResponse;
 import jakarta.validation.constraints.NotNull;
-import java.util.Map;
 import org.springframework.validation.annotation.Validated;
 
 @Validated
 public interface KeywordCountPort {
 
-    void saveKeywords(@NotNull Map<String, Integer> keywordCountMap);
+    void saveKeywords(@NotNull PortKeywordListRequest request);
 
-    PortKeywordListResponse getTop10Keywords();
+    PortKeywordListResponse getTopKeywords(@NotNull Integer limit);
 
 }

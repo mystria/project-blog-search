@@ -16,7 +16,7 @@ public class UseCaseKeywordListResponse {
 
         private Integer rank;
 
-        private String value;
+        private String keyword;
 
         private Integer count;
     }
