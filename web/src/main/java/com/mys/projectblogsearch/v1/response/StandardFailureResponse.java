@@ -1,7 +1,5 @@
 package com.mys.projectblogsearch.v1.response;
 
-import com.mys.projectblogsearch.v1.error.DomainError;
-import java.util.Set;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -9,6 +7,14 @@ import lombok.Getter;
 @Builder
 public class StandardFailureResponse {
 
-    private Set<DomainError> errors;
+    private final int code;
+
+    private final String message;
+
+    public static StandardFailureResponse of(int code, String message) {
+
+        return new StandardFailureResponse(code, message);
+
+    }
 
 }

@@ -7,10 +7,13 @@ dependencies {
     implementation project(':port')
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation platform("org.springframework.cloud:spring-cloud-dependencies:2022.0.4")
-    implementation "org.springframework.cloud:spring-cloud-starter-openfeign"
+    implementation platform('org.springframework.cloud:spring-cloud-dependencies:2022.0.4')
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 
     runtimeOnly 'com.h2database:h2'
+
+    // WireMock for local server mocking
+    testImplementation 'org.mock-server:mockserver-junit-jupiter:5.14.0'
 }
 
 jar.enabled = true
