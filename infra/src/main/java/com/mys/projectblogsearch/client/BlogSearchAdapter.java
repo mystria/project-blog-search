@@ -1,9 +1,9 @@
 package com.mys.projectblogsearch.client;
 
 import com.mys.projectblogsearch.BlogSearchPort;
-import com.mys.projectblogsearch.type.VendorType;
 import com.mys.projectblogsearch.request.PortBlogListRequest;
 import com.mys.projectblogsearch.response.PortBlogListResponse;
+import com.mys.projectblogsearch.type.VendorType;
 import jakarta.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +12,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -46,7 +45,7 @@ public class BlogSearchAdapter implements BlogSearchPort {
         if (Objects.nonNull(worker)) {
             return worker;
         } else {
-            throw new NotImplementedException("Not implemented vendor type: " + request.getVendorType());
+            throw new UnsupportedOperationException("Unsupported vendor type: " + request.getVendorType());
         }
 
     }

@@ -15,7 +15,9 @@ public class DaumFeignClientConfiguration {
 
     @Bean
     public RequestInterceptor requestInterceptor() {
+
         return requestTemplate -> requestTemplate.header("Authorization", String.format(KAKAO_API_KEY_FORMAT, authToken));
+
     }
 
 }
