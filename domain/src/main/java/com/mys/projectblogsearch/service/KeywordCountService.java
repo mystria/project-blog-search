@@ -1,5 +1,6 @@
-package com.mys.projectblogsearch;
+package com.mys.projectblogsearch.service;
 
+import com.mys.projectblogsearch.KeywordCountUseCase;
 import com.mys.projectblogsearch.response.UseCaseKeywordListResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

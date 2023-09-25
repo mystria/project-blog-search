@@ -45,13 +45,13 @@ class DaumBlogMapperTest extends Specification {
         req.page == dto.offset
         req.size == dto.limit
         vendorDto.meta.totalCount == dto.totalCount
-        vendorDto.documents.size() == dto.blogList.size()
-        vendorDto.documents*.title == dto.blogList*.title
-        vendorDto.documents*.blogName == dto.blogList*.blogName
-        vendorDto.documents*.contents == dto.blogList*.contents
-        vendorDto.documents*.thumbnail == dto.blogList*.thumbnail
-        vendorDto.documents*.url == dto.blogList*.url
-        vendorDto.documents*.dateTime == dto.blogList*.dateTime
+        vendorDto.documents.size() == dto.blogs.size()
+        vendorDto.documents*.title == dto.blogs*.title
+        vendorDto.documents*.blogName == dto.blogs*.blogName
+        vendorDto.documents*.contents == dto.blogs*.contents
+        vendorDto.documents*.thumbnail == dto.blogs*.thumbnail
+        vendorDto.documents*.url == dto.blogs*.url
+        vendorDto.documents*.dateTime == dto.blogs*.dateTime
 
     }
 
