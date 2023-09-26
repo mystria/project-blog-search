@@ -24,6 +24,7 @@ public interface KeywordCountMapper {
             .toList();
     }
 
+    @Mapping(target = "id", ignore = true)
     KeywordCountEntity toKeywordCountEntity(PortKeywordListRequest.KeywordCount keywordCount);
 
     default PortKeywordListResponse toKeywordListResponse(List<GroupedKeywordCount> groupedKeywordCount) {

@@ -1,4 +1,4 @@
-package com.mys.projectblogsearch.service;
+package com.mys.projectblogsearch.manager;
 
 import com.mys.projectblogsearch.request.PortBlogListRequest;
 import com.mys.projectblogsearch.request.UseCaseBlogListRequest;

@@ -1,9 +1,10 @@
 package com.mys.projectblogsearch.service
 
-import com.mys.projectblogsearch.BlogSearchPort
-import com.mys.projectblogsearch.request.PortBlogListRequest
+import com.mys.projectblogsearch.manager.BlogSearchManager
+import com.mys.projectblogsearch.manager.KeywordCountManager
+import com.mys.projectblogsearch.model.HitCount
 import com.mys.projectblogsearch.request.UseCaseBlogListRequest
-import com.mys.projectblogsearch.response.PortBlogListResponse
+import com.mys.projectblogsearch.response.UseCaseBlogListResponse
 import org.instancio.Instancio
 import spock.lang.Specification
 import spock.lang.Subject
@@ -13,29 +14,32 @@ class BlogSearchServiceTest extends Specification {
     @Subject
     BlogSearchService service
 
-    BlogSearchPort port
+    BlogSearchManager blogSearchManager
+    KeywordCountManager keywordCountManager
 
     def setup() {
 
-        port = Mock()
-        service = new BlogSearchService(port)
+        blogSearchManager = Mock()
+        keywordCountManager = Mock()
+        service = new BlogSearchService(blogSearchManager, keywordCountManager)
 
     }
 
-    def 'toBlogSearchRequest()'() {
+    def 'search()'() {
 
         given:
-        def dto = Instancio.of(UseCaseBlogListRequest.class)
+        def req = Instancio.of(UseCaseBlogListRequest.class)
             .create()
-        def portRes = Instancio.of(PortBlogListResponse.class)
+        def res = Instancio.of(UseCaseBlogListResponse.class)
             .create()
 
         when:
-        def res = service.search(dto)
+        service.search(req)
 
         then:
-        null != res
-        1 * port.search(_ as PortBlogListRequest) >> portRes
+        1 * keywordCountManager.get(_ as String) >> new HitCount("a")
+        1 * keywordCountManager.hit(_ as HitCount) >> new HitCount("a")
+        1 * blogSearchManager.search(_ as UseCaseBlogListRequest) >> res
 
     }
 
