@@ -18,3 +18,7 @@ client:
   kakao:
     url: 'https://dapi.kakao.com'
     api-key: HAVE_TO_SET_BY_ENVIRONMENT_VARIABLE
+  naver:
+    url: 'https://openapi.naver.com'
+    client-id: HAVE_TO_SET_BY_ENVIRONMENT_VARIABLE
+    client-secret: HAVE_TO_SET_BY_ENVIRONMENT_VARIABLE

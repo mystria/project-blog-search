@@ -1,9 +1,9 @@
-package com.mys.projectblogsearch.client.blogsource.daum;
+package com.mys.projectblogsearch.client.blogsource.naver;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import com.mys.projectblogsearch.client.blogsource.daum.model.SortType;
+import com.mys.projectblogsearch.client.blogsource.naver.model.SortType;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +17,11 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 @WebMvcTest
 @EnableFeignClients
 @ImportAutoConfiguration({FeignAutoConfiguration.class})
-@SpringJUnitConfig(classes = {DaumFeignClientConfiguration.class})
-class DaumFeignClientTest {
+@SpringJUnitConfig(classes = {NaverFeignClientConfiguration.class})
+class NaverFeignClientTest {
 
     @Autowired
-    private DaumFeignClient client;
+    private NaverFeignClient client;
 
     @Test
     void search() {
@@ -34,16 +34,12 @@ class DaumFeignClientTest {
 
         //then
         assertNotNull(response);
-        assertNotNull(response.getMeta());
-        assertNotNull(response.getMeta().getTotalCount());
-        assertNotNull(response.getMeta().getPageableCount());
-        assertNotNull(response.getMeta().getIsEnd());
-        assertNotNull(response.getDocuments().get(0).getTitle());
-        assertNotNull(response.getDocuments().get(0).getContents());
-        assertNotNull(response.getDocuments().get(0).getUrl());
-        assertNotNull(response.getDocuments().get(0).getBlogName());
-        assertNotNull(response.getDocuments().get(0).getThumbnail());
-        assertNotNull(response.getDocuments().get(0).getDateTime());
+        assertNotNull(response.getTotal());
+        assertNotNull(response.getItems().get(0).getTitle());
+        assertNotNull(response.getItems().get(0).getDescription());
+        assertNotNull(response.getItems().get(0).getLink());
+        assertNotNull(response.getItems().get(0).getBloggerName());
+        assertNotNull(response.getItems().get(0).getPostDate());
 
     }
 
@@ -76,8 +72,8 @@ class DaumFeignClientTest {
         //then
         assertNotNull(response1);
         assertNotNull(response2);
-        assertEquals(10, response1.getDocuments().size());
-        assertEquals(5, response2.getDocuments().size());
+        assertEquals(10, response1.getItems().size());
+        assertEquals(5, response2.getItems().size());
 
     }
 

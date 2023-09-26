@@ -5,8 +5,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "daum",
-    configuration = {DaumFeignErrorDecoder.class},
+@FeignClient(name = DaumFeignClientConfiguration.FEIGN_CLIENT_NAME,
+    configuration = {DaumFeignClientConfiguration.class, DaumFeignErrorDecoder.class},
     url = "${client.kakao.url}")
 public interface DaumFeignClient {
 
