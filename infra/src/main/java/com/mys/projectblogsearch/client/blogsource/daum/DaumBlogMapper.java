@@ -23,7 +23,7 @@ public interface DaumBlogMapper {
 
     @Mapping(target = "offset", source = "request.page", defaultExpression = "java(DAUM_DEFAULT_OFFSET)")
     @Mapping(target = "limit", source = "request.size", defaultExpression = "java(DAUM_DEFAULT_LIMIT)")
-    @Mapping(target = "totalCount", source = "response.meta.totalCount")
+    @Mapping(target = "totalCount", source = "response.meta.pageableCount")
     @Mapping(target = "blogs", source = "response.documents")
     PortBlogListResponse toPortBlogListResponse(BlogSearchRequest request, BlogSearchResponse response);
 

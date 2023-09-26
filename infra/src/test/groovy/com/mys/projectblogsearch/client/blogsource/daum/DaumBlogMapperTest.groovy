@@ -11,7 +11,13 @@ import spock.lang.Subject
 class DaumBlogMapperTest extends Specification {
 
     @Subject
-    DaumBlogMapper daumBlogMapper = DaumBlogMapper.INSTANCE
+    DaumBlogMapper daumBlogMapper
+
+    def setup() {
+
+        daumBlogMapper = DaumBlogMapper.INSTANCE
+
+    }
 
     def 'toBlogSearchRequest()'() {
 
@@ -44,7 +50,7 @@ class DaumBlogMapperTest extends Specification {
         then:
         req.page == dto.offset
         req.size == dto.limit
-        vendorDto.meta.totalCount == dto.totalCount
+        vendorDto.meta.pageableCount == dto.totalCount
         vendorDto.documents.size() == dto.blogs.size()
         vendorDto.documents*.title == dto.blogs*.title
         vendorDto.documents*.blogName == dto.blogs*.blogName
