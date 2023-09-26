@@ -6,6 +6,7 @@ import com.github.benmanes.caffeine.cache.RemovalCause;
 import com.github.benmanes.caffeine.cache.RemovalListener;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.caffeine.CaffeineCache;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,13 +20,13 @@ public class KeywordCountHitConfiguration {
     private static final Integer EXPIRY_SECONDS = 10;
 
     @Bean("hitCaffeineCache")
-    public CaffeineCache hitCaffeineCache(RemovalListener<Object, Object> evictionListener) {
+    public CaffeineCache hitCaffeineCache(@Qualifier("evictionListener") RemovalListener<Object, Object> evictionListener) {
 
         return new CaffeineCache(CACHE_NAME, Caffeine.newBuilder()
             .maximumSize(100)
             .evictionListener(evictionListener)
             .removalListener((Object key, Object value, RemovalCause cause) ->
-                log.info("Key {} was removed ({})", key, cause))
+                log.debug("Key {} was removed ({})", key, cause))
             .expireAfter(new Expiry<>() {
                 public long expireAfterCreate(Object key, Object value, long currentTime) {
 

@@ -8,7 +8,7 @@ import lombok.Getter;
 @Builder
 public class PortKeywordListResponse {
 
-    private List<KeywordCount> keywordCountList;
+    private List<KeywordCount> keywordCounts;
 
     @Getter
     @Builder

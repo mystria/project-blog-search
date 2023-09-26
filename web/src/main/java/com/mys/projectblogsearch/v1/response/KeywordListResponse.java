@@ -8,7 +8,7 @@ import lombok.Getter;
 @Builder
 public class KeywordListResponse {
 
-    List<KeywordCount> keywordCountList;
+    List<KeywordCount> keywordCounts;
 
     @Getter
     @Builder

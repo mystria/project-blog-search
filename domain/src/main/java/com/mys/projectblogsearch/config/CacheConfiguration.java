@@ -1,8 +1,8 @@
 package com.mys.projectblogsearch.config;
 
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.caffeine.CaffeineCache;
@@ -13,15 +13,16 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 @EnableCaching
 @Configuration
+@RequiredArgsConstructor
 public class CacheConfiguration {
 
-    @Bean
-    public CacheManager cacheManager(@Qualifier("hitCaffeineCache") CaffeineCache hitCache) {
+    private final List<CaffeineCache> caffeineCaches;
 
-        List<CaffeineCache> caches = List.of(hitCache);
+    @Bean
+    public CacheManager cacheManager() {
 
         SimpleCacheManager simpleCacheManager = new SimpleCacheManager();
-        simpleCacheManager.setCaches(caches);
+        simpleCacheManager.setCaches(caffeineCaches);
 
         return simpleCacheManager;
 

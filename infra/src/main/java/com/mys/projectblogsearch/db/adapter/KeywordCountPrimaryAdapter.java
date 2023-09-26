@@ -21,7 +21,7 @@ public class KeywordCountPrimaryAdapter implements KeywordCountPort {
 
     private final KeywordCountRepository repository;
 
-    private static final KeywordCountMapper MAPPER = KeywordCountMapper.INSTANCE;
+    private static final KeywordCountEntityMapper MAPPER = KeywordCountEntityMapper.INSTANCE;
 
     @Override
     public void saveKeyword(@NotNull String keyword, @NotNull Integer count) {

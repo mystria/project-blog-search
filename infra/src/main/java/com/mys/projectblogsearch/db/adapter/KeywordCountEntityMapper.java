@@ -12,14 +12,14 @@ import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
-public interface KeywordCountMapper {
+public interface KeywordCountEntityMapper {
 
-    KeywordCountMapper INSTANCE = Mappers.getMapper(KeywordCountMapper.class);
+    KeywordCountEntityMapper INSTANCE = Mappers.getMapper(KeywordCountEntityMapper.class);
 
     default List<KeywordCountEntity> toKeywordCountEntityList(PortKeywordListRequest request) {
 
         return Optional.ofNullable(request)
-            .map(PortKeywordListRequest::getKeywordCountList).orElse(List.of()).stream()
+            .map(PortKeywordListRequest::getKeywordCounts).orElse(List.of()).stream()
             .map(this::toKeywordCountEntity)
             .toList();
     }
@@ -30,7 +30,7 @@ public interface KeywordCountMapper {
     default PortKeywordListResponse toKeywordListResponse(List<GroupedKeywordCount> groupedKeywordCount) {
 
         return PortKeywordListResponse.builder()
-            .keywordCountList(toKeywordCountList(groupedKeywordCount))
+            .keywordCounts(toKeywordCountList(groupedKeywordCount))
             .build();
     }
 
