@@ -2,7 +2,7 @@ package com.mys.projectblogsearch.service;
 
 import com.mys.projectblogsearch.BlogSearchUseCase;
 import com.mys.projectblogsearch.manager.BlogSearchManager;
-import com.mys.projectblogsearch.manager.KeywordCountManager;
+import com.mys.projectblogsearch.manager.KeywordCountWriteManager;
 import com.mys.projectblogsearch.request.UseCaseBlogListRequest;
 import com.mys.projectblogsearch.response.UseCaseBlogListResponse;
 import com.mys.projectblogsearch.util.KeywordSeparatorUtil;
@@ -19,7 +19,7 @@ public class BlogSearchService implements BlogSearchUseCase {
 
     private final BlogSearchManager blogSearchManager;
 
-    private final KeywordCountManager keywordCountManager;
+    private final KeywordCountWriteManager keywordCountManager;
 
     @Override
     public UseCaseBlogListResponse search(@NotNull @Valid UseCaseBlogListRequest request) {

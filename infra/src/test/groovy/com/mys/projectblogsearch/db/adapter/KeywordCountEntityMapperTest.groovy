@@ -6,10 +6,10 @@ import org.instancio.Instancio
 import spock.lang.Specification
 import spock.lang.Subject
 
-class KeywordCountMapperTest extends Specification {
+class KeywordCountEntityMapperTest extends Specification {
 
     @Subject
-    KeywordCountMapper keywordCountMapper = KeywordCountMapper.INSTANCE
+    KeywordCountEntityMapper keywordCountMapper = KeywordCountEntityMapper.INSTANCE
 
     def 'toKeywordCountEntityList()'() {
 
@@ -21,8 +21,8 @@ class KeywordCountMapperTest extends Specification {
         def entities = keywordCountMapper.toKeywordCountEntityList(dto)
 
         then:
-        dto.keywordCountList*.keyword == entities*.keyword
-        dto.keywordCountList*.count == entities*.count
+        dto.keywordCounts*.keyword == entities*.keyword
+        dto.keywordCounts*.count == entities*.count
     }
 
     def 'toKeywordListResponse()'() {
@@ -36,9 +36,21 @@ class KeywordCountMapperTest extends Specification {
         def dto = keywordCountMapper.toKeywordListResponse(entities)
 
         then:
-        3 == dto.keywordCountList.size()
-        entities*.keyword == dto.keywordCountList*.keyword
-        entities*.totalCount == dto.keywordCountList*.count
+        3 == dto.keywordCounts.size()
+        entities*.keyword == dto.keywordCounts*.keyword
+        entities*.totalCount == dto.keywordCounts*.count
+    }
+
+    def 'toKeywordListResponseWithEmpty()'() {
+
+        given:
+        def entities = null
+
+        when:
+        def dto = keywordCountMapper.toKeywordListResponse(entities)
+
+        then:
+        0 == dto.keywordCounts.size()
     }
 
     class GroupedKeywordCountImpl implements KeywordCountRepository.GroupedKeywordCount {

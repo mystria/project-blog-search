@@ -13,10 +13,10 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 @Tag("integration-test")
 @SpringBootTest
 @SpringJUnitConfig(classes = {KeywordCountManagerConfiguration.class})
-class KeywordCountManagerTest {
+class KeywordCountWriteManagerTest {
 
     @Autowired
-    private KeywordCountManager manager;
+    private KeywordCountWriteManager manager;
 
     @Autowired
     private CacheManager cacheManager;

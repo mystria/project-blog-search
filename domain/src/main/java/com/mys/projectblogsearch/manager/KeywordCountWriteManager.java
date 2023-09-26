@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class KeywordCountManager {
+public class KeywordCountWriteManager {
 
     @Cacheable(KeywordCountHitConfiguration.CACHE_NAME)
     public HitCount get(String keyword) {

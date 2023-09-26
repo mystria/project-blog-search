@@ -1,7 +1,7 @@
 package com.mys.projectblogsearch.service
 
 import com.mys.projectblogsearch.manager.BlogSearchManager
-import com.mys.projectblogsearch.manager.KeywordCountManager
+import com.mys.projectblogsearch.manager.KeywordCountWriteManager
 import com.mys.projectblogsearch.model.HitCount
 import com.mys.projectblogsearch.request.UseCaseBlogListRequest
 import com.mys.projectblogsearch.response.UseCaseBlogListResponse
@@ -15,7 +15,7 @@ class BlogSearchServiceTest extends Specification {
     BlogSearchService service
 
     BlogSearchManager blogSearchManager
-    KeywordCountManager keywordCountManager
+    KeywordCountWriteManager keywordCountManager
 
     def setup() {
 
