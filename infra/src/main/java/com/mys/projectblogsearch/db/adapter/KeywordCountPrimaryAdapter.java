@@ -24,6 +24,16 @@ public class KeywordCountPrimaryAdapter implements KeywordCountPort {
     private static final KeywordCountMapper MAPPER = KeywordCountMapper.INSTANCE;
 
     @Override
+    public void saveKeyword(@NotNull String keyword, @NotNull Integer count) {
+
+        repository.save(KeywordCountEntity.builder()
+            .keyword(keyword)
+            .count(count)
+            .build());
+
+    }
+
+    @Override
     public void saveKeywords(@NotNull PortKeywordListRequest request) {
 
         List<KeywordCountEntity> entities = MAPPER.toKeywordCountEntityList(request);

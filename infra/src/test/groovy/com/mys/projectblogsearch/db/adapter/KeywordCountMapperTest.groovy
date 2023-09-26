@@ -21,7 +21,6 @@ class KeywordCountMapperTest extends Specification {
         def entities = keywordCountMapper.toKeywordCountEntityList(dto)
 
         then:
-        3 == entities.size()
         dto.keywordCountList*.keyword == entities*.keyword
         dto.keywordCountList*.count == entities*.count
     }

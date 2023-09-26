@@ -8,6 +8,8 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public interface KeywordCountPort {
 
+    void saveKeyword(@NotNull String keyword, @NotNull Integer count);
+
     void saveKeywords(@NotNull PortKeywordListRequest request);
 
     PortKeywordListResponse getTopKeywords(@NotNull Integer limit);

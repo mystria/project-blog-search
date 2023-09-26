@@ -1,10 +1,11 @@
 package com.mys.projectblogsearch.service;
 
-import com.mys.projectblogsearch.BlogSearchPort;
 import com.mys.projectblogsearch.BlogSearchUseCase;
+import com.mys.projectblogsearch.manager.BlogSearchManager;
+import com.mys.projectblogsearch.manager.KeywordCountManager;
 import com.mys.projectblogsearch.request.UseCaseBlogListRequest;
 import com.mys.projectblogsearch.response.UseCaseBlogListResponse;
-import com.mys.projectblogsearch.type.VendorType;
+import com.mys.projectblogsearch.util.KeywordSeparatorUtil;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -16,16 +17,20 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class BlogSearchService implements BlogSearchUseCase {
 
-    private static final BlogSearchMapper MAPPER = BlogSearchMapper.INSTANCE;
+    private final BlogSearchManager blogSearchManager;
 
-    private final BlogSearchPort blogSearchPort;
+    private final KeywordCountManager keywordCountManager;
 
     @Override
     public UseCaseBlogListResponse search(@NotNull @Valid UseCaseBlogListRequest request) {
 
-        return MAPPER.toUseCaseBlogListResponse(
-            blogSearchPort.search(
-                MAPPER.toPortBlogListRequest(request, VendorType.DAUM)));
+        log.debug("Search for {}", request.getQuery());
+        KeywordSeparatorUtil.separateToStream(request.getQuery())
+            .map(keywordCountManager::get)
+            .map(keywordCountManager::hit)
+            .forEach(hitCount -> log.debug("Keyword hits: {}", hitCount));
+
+        return blogSearchManager.search(request);
 
     }
 
