@@ -17,10 +17,8 @@ public class BlogSearchManager {
 
     private static final BlogSearchMapper MAPPER = BlogSearchMapper.INSTANCE;
 
-    private final BlogSearchPort blogSearchPort;
-
     @CircuitBreaker(name = "blogs", fallbackMethod = "searchFallback")
-    public UseCaseBlogListResponse search(UseCaseBlogListRequest request) {
+    public UseCaseBlogListResponse search(BlogSearchPort blogSearchPort, UseCaseBlogListRequest request) {
 
         return MAPPER.toUseCaseBlogListResponse(
             blogSearchPort.search(
@@ -29,7 +27,8 @@ public class BlogSearchManager {
     }
 
     @SuppressWarnings("unused")
-    private UseCaseBlogListResponse searchFallback(UseCaseBlogListRequest request, CallNotPermittedException exception) {
+    private UseCaseBlogListResponse searchFallback(BlogSearchPort blogSearchPort, UseCaseBlogListRequest request,
+        CallNotPermittedException exception) {
 
         log.error("CircuitBreaker is open. Fallback returned instead. {}", exception.getMessage());
         return MAPPER.toUseCaseBlogListResponse(

@@ -1,5 +1,6 @@
 package com.mys.projectblogsearch.service;
 
+import com.mys.projectblogsearch.BlogSearchPort;
 import com.mys.projectblogsearch.BlogSearchUseCase;
 import com.mys.projectblogsearch.manager.BlogSearchManager;
 import com.mys.projectblogsearch.manager.KeywordCountWriteManager;
@@ -19,6 +20,8 @@ public class BlogSearchService implements BlogSearchUseCase {
 
     private final BlogSearchManager blogSearchManager;
 
+    private final BlogSearchPort blogSearchPort;
+
     private final KeywordCountWriteManager keywordCountManager;
 
     @Override
@@ -30,7 +33,7 @@ public class BlogSearchService implements BlogSearchUseCase {
             .map(keywordCountManager::hit)
             .forEach(hitCount -> log.debug("Keyword hits: {}", hitCount));
 
-        return blogSearchManager.search(request);
+        return blogSearchManager.search(blogSearchPort, request);
 
     }
 
