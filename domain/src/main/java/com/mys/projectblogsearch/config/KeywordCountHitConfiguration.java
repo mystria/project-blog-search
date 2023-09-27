@@ -2,7 +2,6 @@ package com.mys.projectblogsearch.config;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.Expiry;
-import com.github.benmanes.caffeine.cache.RemovalCause;
 import com.github.benmanes.caffeine.cache.RemovalListener;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
@@ -17,16 +16,16 @@ public class KeywordCountHitConfiguration {
 
     public static final String CACHE_NAME = "hit";
 
-    private static final Integer EXPIRY_SECONDS = 10;
+    public static final long SCHEDULING_EXPIRY_MILLISECONDS = 10000L;
+
+    private static final Integer EXPIRY_SECONDS = 5;
 
     @Bean("hitCaffeineCache")
-    public CaffeineCache hitCaffeineCache(@Qualifier("evictionListener") RemovalListener<Object, Object> evictionListener) {
+    public CaffeineCache hitCaffeineCache(@Qualifier("removalListener") RemovalListener<Object, Object> removalListener) {
 
         return new CaffeineCache(CACHE_NAME, Caffeine.newBuilder()
             .maximumSize(100)
-            .evictionListener(evictionListener)
-            .removalListener((Object key, Object value, RemovalCause cause) ->
-                log.debug("Key {} was removed ({})", key, cause))
+            .removalListener(removalListener)
             .expireAfter(new Expiry<>() {
                 public long expireAfterCreate(Object key, Object value, long currentTime) {
 
@@ -49,6 +48,7 @@ public class KeywordCountHitConfiguration {
                 }
             })
             .build());
+
     }
 
 }

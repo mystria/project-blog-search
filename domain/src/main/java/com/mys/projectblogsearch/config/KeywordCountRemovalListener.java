@@ -12,9 +12,9 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 @Slf4j
-@Component("evictionListener")
+@Component("removalListener")
 @RequiredArgsConstructor
-public class KeywordCountEvictionListener implements RemovalListener<Object, Object> {
+public class KeywordCountRemovalListener implements RemovalListener<Object, Object> {
 
     private final KeywordCountPort keywordCountPort;
 
