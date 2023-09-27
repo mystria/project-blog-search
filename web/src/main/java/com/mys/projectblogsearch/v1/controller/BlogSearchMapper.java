@@ -14,7 +14,7 @@ public interface BlogSearchMapper {
     BlogSearchMapper INSTANCE = Mappers.getMapper(BlogSearchMapper.class);
 
     @Mapping(target = "query", expression = "java(query.trim())")
-    UseCaseBlogListRequest toUseCaseBlogListRequest(String query, SortType sort, Integer page, Integer size);
+    UseCaseBlogListRequest toUseCaseBlogListRequest(String query, SortType sort, Integer offset, Integer limit);
 
     BlogListResponse toBlogListResponse(UseCaseBlogListResponse result);
 

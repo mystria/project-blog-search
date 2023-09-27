@@ -19,8 +19,11 @@ public interface DaumBlogMapper {
 
     DaumBlogMapper INSTANCE = Mappers.getMapper(DaumBlogMapper.class);
 
+    @Mapping(target = "page", source = "offset")
+    @Mapping(target = "size", source = "limit")
     BlogSearchRequest toBlogSearchRequest(PortBlogListRequest request);
 
+    @Mapping(target = "sort", source = "request.sort")
     @Mapping(target = "offset", source = "request.page", defaultExpression = "java(DAUM_DEFAULT_OFFSET)")
     @Mapping(target = "limit", source = "request.size", defaultExpression = "java(DAUM_DEFAULT_LIMIT)")
     @Mapping(target = "totalCount", source = "response.meta.pageableCount")

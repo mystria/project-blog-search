@@ -23,10 +23,12 @@ public class PortBlogListRequest {
 
     @Min(1)
     @Max(50)
-    private Integer page;
+    @NotNull
+    private Integer offset;
 
     @Min(1)
     @Max(50)
-    private Integer size;
+    @NotNull
+    private Integer limit;
 
 }

@@ -4,6 +4,7 @@ import com.mys.projectblogsearch.type.SortType;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -18,10 +19,12 @@ public class UseCaseBlogListRequest {
 
     @Min(1)
     @Max(50)
-    private Integer page;
+    @NotNull
+    private Integer offset;
 
     @Min(1)
     @Max(50)
-    private Integer size;
+    @NotNull
+    private Integer limit;
 
 }
