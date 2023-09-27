@@ -32,7 +32,7 @@ _Project Blog Search_ 는 Hexagonal Architecture 기반으로 설계된 블로�
 
 ## How to run
 
-- excutable jar 를 생성합니다. 제공하는 [[다운로드](https://drive.google.com/file/d/16Vp-O5zJrlYCMw-1O0Rdhr-Das7jVCTk/view?usp=drive_link)] 는 일정기간 이후 삭제됩니다.
+- excutable jar 를 생성합니다. 제공하는 [[다운로드](http://naver.me/xVAJD9qk)] 는 일정기간 이후 삭제됩니다.
 
       $ ./gradlew clean build
 
