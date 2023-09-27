@@ -20,6 +20,10 @@ _Project Blog Search_ 는 Hexagonal Architecture 기반으로 설계된 블로�
   - 검색어 순위는 최소 5초, 최대 10초마다 갱신됩니다.
   - 검색어 순위는 검색어가 많이 검색된 순으로 정렬되어 표시됩니다.
 
+## Architecture
+
+![Architecture Blog Search](./architecture_blog_search.png)
+
 ## Requirements
 
 - Java 17 혹은 그 이상의 버전을 요구합니다.
