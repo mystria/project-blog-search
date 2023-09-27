@@ -23,7 +23,7 @@ public class KeywordCountRemovalListener implements RemovalListener<Object, Obje
     public void onRemoval(@Nullable Object key, @Nullable Object value, RemovalCause cause) {
 
         if (value instanceof HitCount hitCount) {
-            log.info("Key {}({}) was stacked in DB ({})", hitCount.getKeyword(), hitCount.getCount(), cause);
+            log.debug("Key {}({}) was stacked in DB ({})", hitCount.getKeyword(), hitCount.getCount(), cause);
             if (StringUtils.isBlank(hitCount.getKeyword()) || hitCount.getCount() < 1)
                 return;
             keywordCountPort.saveKeyword(hitCount.getKeyword(), hitCount.getCount());

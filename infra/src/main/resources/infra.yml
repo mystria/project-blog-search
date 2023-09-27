@@ -9,7 +9,7 @@ spring:
       enabled: true # H2 (http://localhost:8080/h2-console)
   jpa:
     database: H2
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         format_sql: true

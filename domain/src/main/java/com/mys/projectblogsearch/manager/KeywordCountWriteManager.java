@@ -34,7 +34,7 @@ public class KeywordCountWriteManager {
     @CacheEvict(value = KeywordCountHitConfiguration.CACHE_NAME, allEntries = true)
     public void clearCache() {
 
-        log.info("Cache cleared.");
+        log.debug("Cache cleared.");
 
     }
 
