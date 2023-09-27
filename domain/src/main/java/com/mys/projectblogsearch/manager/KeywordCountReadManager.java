@@ -15,10 +15,8 @@ public class KeywordCountReadManager {
 
     private static final KeywordCountMapper MAPPER = KeywordCountMapper.INSTANCE;
 
-    private final KeywordCountPort keywordCountPort;
-
     @Cacheable(KeywordCountRankConfiguration.CACHE_NAME)
-    public UseCaseKeywordListResponse getPopularKeywordList(Integer limit) {
+    public UseCaseKeywordListResponse getPopularKeywordList(KeywordCountPort keywordCountPort, Integer limit) {
 
         return MAPPER.toUseCaseBlogListResponse(
             keywordCountPort.getTopKeywords(limit));

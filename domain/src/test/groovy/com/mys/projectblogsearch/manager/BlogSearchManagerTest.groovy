@@ -18,7 +18,7 @@ class BlogSearchManagerTest extends Specification {
     def setup() {
 
         port = Mock()
-        manager = new BlogSearchManager(port)
+        manager = new BlogSearchManager()
 
     }
 
@@ -31,7 +31,7 @@ class BlogSearchManagerTest extends Specification {
             .create()
 
         when:
-        def res = manager.search(dto)
+        def res = manager.search(port, dto)
 
         then:
         null != res

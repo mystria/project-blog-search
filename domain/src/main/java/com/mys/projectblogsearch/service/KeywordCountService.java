@@ -1,5 +1,6 @@
 package com.mys.projectblogsearch.service;
 
+import com.mys.projectblogsearch.KeywordCountPort;
 import com.mys.projectblogsearch.KeywordCountUseCase;
 import com.mys.projectblogsearch.manager.KeywordCountReadManager;
 import com.mys.projectblogsearch.response.UseCaseKeywordListResponse;
@@ -16,10 +17,12 @@ public class KeywordCountService implements KeywordCountUseCase {
 
     private final KeywordCountReadManager keywordCountManager;
 
+    private final KeywordCountPort keywordCountPort;
+
     @Override
     public UseCaseKeywordListResponse getPopularTop10KeywordList() {
 
-        return keywordCountManager.getPopularKeywordList(TOP_SIZE);
+        return keywordCountManager.getPopularKeywordList(keywordCountPort, TOP_SIZE);
 
     }
 
