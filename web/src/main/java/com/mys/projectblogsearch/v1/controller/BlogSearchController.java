@@ -30,21 +30,21 @@ public class BlogSearchController extends StandardController {
     }, parameters = {
         @Parameter(name = "query", description = "검색 키워드", required = true),
         @Parameter(name = "sort", description = "정렬 옵션", example = "ACCURACY"),
-        @Parameter(name = "page", description = "페이지 번호", example = "1"),
-        @Parameter(name = "size", description = "페이지 사이즈", example = "10")
+        @Parameter(name = "offset", description = "페이지 번호", example = "1"),
+        @Parameter(name = "limit", description = "페이지 사이즈", example = "10")
     })
     @GetMapping("/blogs")
     public ResponseEntity<BlogListResponse> getBlogs(
         @RequestParam(value = "query") String query,
         @RequestParam(value = "sort", required = false) SortType sort,
-        @RequestParam(value = "page", required = false) Integer page,
-        @RequestParam(value = "size", required = false) Integer size
+        @RequestParam(value = "offset") Integer offset,
+        @RequestParam(value = "limit") Integer limit
     ) {
 
         return success(
             MAPPER.toBlogListResponse(
                 blogSearchUseCase.search(
-                    MAPPER.toUseCaseBlogListRequest(query, sort, page, size))));
+                    MAPPER.toUseCaseBlogListRequest(query, sort, offset, limit))));
 
     }
 

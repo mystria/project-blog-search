@@ -35,7 +35,7 @@ public class NaverBlogSearchWorker implements BlogSearchWorker {
 
         QueryValidator.validate(request.getQuery());
         BlogSearchRequest blogSearchRequest = MAPPER.toBlogSearchRequest(request);
-        return MAPPER.toPortBlogListResponse(
+        return MAPPER.toPortBlogListResponse(blogSearchRequest,
             feignClient.search(
                 blogSearchRequest.getQuery(),
                 Optional.ofNullable(blogSearchRequest.getSort())

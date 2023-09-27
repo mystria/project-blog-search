@@ -1,6 +1,7 @@
 package com.mys.projectblogsearch.client.blogsource.naver
 
 import com.mys.projectblogsearch.Constants
+import com.mys.projectblogsearch.client.blogsource.naver.model.BlogSearchRequest
 import com.mys.projectblogsearch.client.blogsource.naver.model.BlogSearchResponse
 import com.mys.projectblogsearch.client.blogsource.naver.model.Item
 import com.mys.projectblogsearch.request.PortBlogListRequest
@@ -28,37 +29,40 @@ class NaverBlogMapperTest extends Specification {
         def dto = PortBlogListRequest.builder()
             .vendorType(VendorType.NAVER)
             .query("TEST")
-            .page(page_)
-            .size(size_)
+            .offset(offset_)
+            .limit(limit_)
             .build()
 
         when:
         def vendorDto = naverBlogMapper.toBlogSearchRequest(dto)
 
         then:
+        dto.sort?.name() == vendorDto.sort?.name()
         dto.query == vendorDto.query
         start_ == vendorDto.start
         display_ == vendorDto.display
 
         where:
-        page_ | size_ | start_ | display_
-        1     | 10    | 1      | 10
-        2     | 10    | 11     | 10
-        3     | 10    | 21     | 10
-        1     | 20    | 1      | 20
-        2     | 20    | 21     | 20
-        1     | 8     | 1      | 8
-        2     | 8     | 9      | 8
-        3     | 8     | 17     | 8
-        null  | null  | null   | null
-        null  | 10    | null   | 10
-        2     | null  | 11     | null // Default 로 display 를 10 으로 취급
+        offset_ | limit_ | start_ | display_
+        1       | 10     | 1      | 10
+        2       | 10     | 11     | 10
+        3       | 10     | 21     | 10
+        1       | 20     | 1      | 20
+        2       | 20     | 21     | 20
+        1       | 8      | 1      | 8
+        2       | 8      | 9      | 8
+        3       | 8      | 17     | 8
+        null    | null   | null   | null
+        null    | 10     | null   | 10
+        2       | null   | 11     | null // Default 로 display 를 10 으로 취급
 
     }
 
     def 'toPortBlogListResponse()'() {
 
         given:
+        def req = Instancio.of(BlogSearchRequest.class)
+            .create()
         def vendorDto = BlogSearchResponse.builder()
             .start(start_)
             .display(display_)
@@ -67,9 +71,10 @@ class NaverBlogMapperTest extends Specification {
             .build()
 
         when:
-        def dto = naverBlogMapper.toPortBlogListResponse(vendorDto)
+        def dto = naverBlogMapper.toPortBlogListResponse(req, vendorDto)
 
         then:
+        req.sort?.name() == dto.sort?.name()
         offset_ == dto.offset
         limit_ == dto.limit
         100 == dto.totalCount

@@ -30,8 +30,8 @@ class BlogSearchMapperTest extends Specification {
         then:
         req.query == portReq.query
         req.sort == portReq.sort
-        req.page == portReq.page
-        req.size == portReq.size
+        req.offset == portReq.offset
+        req.limit == portReq.limit
         portVendor_ == portReq.vendorType
 
         where:

@@ -1,5 +1,6 @@
 package com.mys.projectblogsearch.response;
 
+import com.mys.projectblogsearch.type.SortType;
 import java.time.ZonedDateTime;
 import java.util.List;
 import lombok.Builder;
@@ -10,6 +11,8 @@ import lombok.Getter;
 public class UseCaseBlogListResponse {
 
     private List<BlogSummary> blogs;
+
+    private SortType sort;
 
     private Integer offset;
 

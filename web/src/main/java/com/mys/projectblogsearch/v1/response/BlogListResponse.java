@@ -1,5 +1,7 @@
 package com.mys.projectblogsearch.v1.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.mys.projectblogsearch.type.SortType;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -8,11 +10,15 @@ import lombok.Getter;
 
 @Getter
 @Builder
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Schema(description = "블로그 리스트 응답")
 public class BlogListResponse {
 
     @Schema(description = "블로그 리스트")
     private List<BlogSummary> blogs;
+
+    @Schema(description = "정렬 기준")
+    private SortType sort;
 
     @Schema(description = "페이지 시작 위치")
     private Integer offset;

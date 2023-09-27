@@ -28,8 +28,8 @@ public interface NaverBlogMapper {
 
     NaverBlogMapper INSTANCE = Mappers.getMapper(NaverBlogMapper.class);
 
-    @Mapping(target = "display", source = "size")
-    @Mapping(target = "start", expression = "java(toStart(request.getPage(), request.getSize()))")
+    @Mapping(target = "display", source = "limit")
+    @Mapping(target = "start", expression = "java(toStart(request.getOffset(), request.getLimit()))")
     BlogSearchRequest toBlogSearchRequest(PortBlogListRequest request);
 
     default Integer toStart(Integer page, Integer size) {
@@ -43,11 +43,12 @@ public interface NaverBlogMapper {
 
     }
 
+    @Mapping(target = "sort", source = "request.sort")
     @Mapping(target = "offset", expression = "java(toOffset(response.getStart(), response.getDisplay()))")
     @Mapping(target = "limit", source = "response.display")
     @Mapping(target = "totalCount", source = "response.total")
     @Mapping(target = "blogs", source = "response.items")
-    PortBlogListResponse toPortBlogListResponse(BlogSearchResponse response);
+    PortBlogListResponse toPortBlogListResponse(BlogSearchRequest request, BlogSearchResponse response);
 
     default Integer toOffset(Integer start, Integer display) {
 

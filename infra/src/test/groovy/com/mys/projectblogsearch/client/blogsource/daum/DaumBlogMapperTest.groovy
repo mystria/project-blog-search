@@ -30,9 +30,9 @@ class DaumBlogMapperTest extends Specification {
 
         then:
         dto.query == vendorDto.query
-        dto.page == vendorDto.page
-        dto.size == vendorDto.size
-        dto.sort.name() == vendorDto.sort.name()
+        dto.offset == vendorDto.page
+        dto.limit == vendorDto.size
+        dto.sort?.name() == vendorDto.sort?.name()
 
     }
 
@@ -48,6 +48,7 @@ class DaumBlogMapperTest extends Specification {
         def dto = daumBlogMapper.toPortBlogListResponse(req, vendorDto)
 
         then:
+        req.sort?.name() == dto.sort?.name()
         req.page == dto.offset
         req.size == dto.limit
         vendorDto.meta.pageableCount == dto.totalCount
